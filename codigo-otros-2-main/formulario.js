@@ -1,8 +1,9 @@
-var formulario = document.querySelector("#form")
+var formulario = document.querySelector("form")
 
+// Llamada a la acción alenviar información
 formulario.onsubmit = function(e) {
 
-  e.prevent();
+  e.preventDefault(); //mal escrito el preventDefault
   
   var n = formulario.elements[0]
   var e = formulario.elements[1]
@@ -16,6 +17,8 @@ formulario.onsubmit = function(e) {
   console.log(nombre, edad)
   console.log(nacionalidad)
 
+  //Validaciones de campos
+
   if (nombre.length === 0) {
     n.classList.add("error")
   }
@@ -26,16 +29,18 @@ formulario.onsubmit = function(e) {
 if (nombre.length > 0 
   && (edad > 18 
     && edad < 120) ) {
-  agregarInvitado(nombre, edad, nacionalidad)
+  agregarInvitado(nombre, edad, nacionalidad)//se añade función principal de mandar información
   }
 }
-
-var botonBorrar = document.createElement("button")
+//Creación de botón eliminar en la página innecesario
+/* var botonBorrar = document.createElement("button")
 botonBorrar.textContent = "Eliminar invitado"
 botonBorrar.id = "boton-borrar"
 var corteLinea = document.createElement("br")
 document.body.appendChild(corteLinea)
-document.body.appendChild(botonBorrar);
+document.body.appendChild(botonBorrar); */
+
+//Llamada de función agregar Invitado
 
 function agregarInvitado(nombre, edad, nacionalidad) {
 
@@ -55,17 +60,19 @@ function agregarInvitado(nombre, edad, nacionalidad) {
 var lista = document.getElementById("lista-de-invitados")
 
 var elementoLista = document.createElement("div")
-elementoLista.classList.added("elemento-lista")
+elementoLista.classList.add("elemento-lista")//se escribió un added en lugar de un add
 lista.appendChild(elementoLista)
 
-var spanNombre = document.createElement("span")
+
+//          Código innecesario
+/* var spanNombre = document.createElement("span")
 var inputNombre = document.createElement("input")
 var espacio = document.createElement("br")
 spanNombre.textContent = "Nombre: "
 inputNombre.value = nombre 
 elementoLista.appendChild(spanNombre)
 elementoLista.appendChild(inputNombre)
-elementoLista.appendChild(espacio)
+elementoLista.appendChild(espacio) */ //Código innecesario que se repite en función crearElemento
 
 function crearElemento(descripcion, valor) {
 var spanNombre = document.createElement("span")
@@ -76,13 +83,14 @@ inputNombre.value = valor
 elementoLista.appendChild(spanNombre)
 elementoLista.appendChild(inputNombre)
 elementoLista.appendChild(espacio)
-}
+}//funcion crearElemento
 
+//Añadir Nombre, edad y nacionalidad en div
 crearElemento("Nombre", nombre)
 crearElemento("Edad", edad)
 crearElemento("Nacionalidad", nacionalidad)
 
-
+//Añadir el botón Borrrar
 var botonBorrar = document.createElement("button")
 botonBorrar.textContent = "Eliminar invitado"
 botonBorrar.id = "boton-borrar"
@@ -93,5 +101,5 @@ elementoLista.appendChild(botonBorrar);
  botonBorrar.onclick = function() {
 // this.parentNode.style.display = 'none';
 botonBorrar.parentNode.remove()
-  }
-}
+  }// acción borrar en el botón
+}//función agregar
